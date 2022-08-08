@@ -1,0 +1,44 @@
+
+<script type="text/javascript">
+     $(document).on("change", "#myselect" , function(){
+		var selected = $(this).val();
+        output="";
+        let csr = $("input[name=csrfmiddlewaretoken]").val();
+        console.log("----------->",selected);
+		if(selected=="Select Product")
+		{
+            // console("---------> select product",selected);
+            output+="<option value='select Product' disabled selected>select brand</option>";
+			$("#hello").html(output);	
+		}
+		else
+        {
+            userData = {
+                selected: selected,
+                csrfmiddlewaretoken: csr,
+            };
+            $.ajax({
+                method:"POST",
+                data:  userData,
+                url : "{% url 'get_sub' %}",
+                // output+="<option value="+x[i].brand_name+" >"+x[i.brand_name]+" </option>";
+                success: function(response)
+                        {
+                                //console.log("------------>res.data",response.data.brand_name);
+                                //console.log("------------>res.data",response.data.brand_name);
+                            console.log("clickkkkk");
+                            x = response.context.data; // getting all data from response
+                            //console.log("--------------->data",response.context.udata);
+                            for (i = 0; i < x.length; i++) 
+                            {
+                                console.log("--> X ",x[i].sub_category_name);
+                                // output+="<tr><td>"+x[i].id+"</td><td>"+x[i].name+"</td><td>"+x[i].email+"</td><td>"+x[i].contact+"</td><td> <input type='button' class='btn btn-warning btn-sm btn-edit' value='Edit'  data-sid="+x[i].id+" /> <input type='button' class='btn btn-warning btn-sm btn-del' value='Delete' data-sid="+x[i].id+" />"   
+                                output+="<option value="+x[i].sub_category_name+" >"+x[i].sub_category_name+" </option>";
+                            }
+                            $("#hello").html(output);               
+                        }
+            });
+	    }
+	});
+
+</script>

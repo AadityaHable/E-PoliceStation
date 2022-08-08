@@ -1,0 +1,62 @@
+{% load static %}
+<html>
+<head>
+  <link href="{% static '\assets/images/gujarat-police-logo.png' %}" rel="icon"> <!-- Favicon-->
+        <title>Add F.I.R</title>
+        <meta name="description" content="Oero Laravel">    
+        <meta name="author" content="Oero Laravel">
+                
+                
+        <link rel="stylesheet" href="{% static '\assets3\plugins\bootstrap\css\bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static '\assets3\plugins\dropzone\dropzone.css' %}">
+        <link rel="stylesheet" href="{% static '\assets3\plugins\bootstrap-select\css\bootstrap-select.css' %}">
+        <link rel="stylesheet" href="{% static '\assets3\css\main.css' %}">
+        <link rel="stylesheet" href="{% static '\assets3\css\color_skins.css' %}"> 
+</head>
+<body>
+
+
+       <form method="POST">
+         {% csrf_token %}
+        <select name="product" id="myselect">
+
+          <option value="Select Product" disabled selected>Select Product</option>
+          {% for i in context.crime_cat %}
+              <option value={{i.id}} id={{i.id}}>{{i.crime_category_name}}</option>
+          {% endfor %}
+        </select>
+
+        <select name="brand" id="brand">
+          <option value="select" disabled selected>Select Brand</option> 
+        </select>
+      </form>
+
+      
+    <script src="{% static '\assets3\bundles\libscripts.bundle.js' %}"></script>    
+    <script src="{% static '\assets3\bundles\vendorscripts.bundle.js' %}"></script>
+    <script src="{% static '\assets3\bundles\mainscripts.bundle.js' %}"></script>
+    <script src="{% static '\assets3\plugins\dropzone\dropzone.js' %}"></script>
+
+    <script src="{% static '\assets3\bundles\libscripts.bundle.js' %}"></script>    
+    <script src="{% static '\assets3\bundles\vendorscripts.bundle.js' %}"></script>
+
+    <script src="{% static '\assets3\plugins\dropzone\dropzone.js' %}"></script>
+      {% include 'ajaxfile.html' %}
+
+
+      <script type="text/javascript">
+        var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+        (function(){
+        var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+        s1.async=true;
+        s1.src='https://embed.tawk.to/59f5afbbbb0c3f433d4c5c4c/default';
+        s1.charset='UTF-8';
+        s1.setAttribute('crossorigin','*');
+        s0.parentNode.insertBefore(s1,s0);
+        })();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
+        </script>
+
+</body>
+</html>
+
+       

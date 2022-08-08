@@ -1,0 +1,110 @@
+﻿<!--
+ // **************************************************
+ // ******* Name: drora
+ // ******* Description: Bootstrap 4 Admin Dashboard
+ // ******* Version: 1.0.0
+ // ******* Released on 2019-02-08 15:41:24
+ // ******* Support Email : quixlab.com@gmail.com
+ // ******* Support Skype : sporsho9
+ // ******* Author: Quixlab
+ // ******* URL: https://quixlab.com
+ // ******* Themeforest Profile : https://themeforest.net/user/quixlab
+ // ******* License: ISC
+ // ***************************************************
+-->
+
+{% load static %}
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Gleek - Bootstrap Admin Dashboard HTML Template</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets\images\favicon.png' %}">
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'assets\css\style.css' %}" rel="stylesheet">
+    
+</head>
+
+<body class="h-100">
+    <div id="preloader">
+        <body class="h-100" style="background-image:url({% static 'assets/images/bgimg2.jpg' %})"></body>
+        <div class="loader"></div>
+    </div>
+    <div class="h-60">
+        <div class="container h-60">
+            <div class="row justify-content-center h-60">
+                <div class="col-md-5">
+                    <div class="form-input-content">
+                        <!-- <div class="card card-login"> -->
+                            <div class="card-header text-center">
+                                <div class="position-relative  text-center w-100">
+                                    <div class="brand-logo">
+                                        <a href="index.html">
+                                            <span class="brand-title"><b style="color: rgb(255, 255, 255);" >Registration</b></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <form action="{% url 'register_member' %}" method="POST">
+                                    {% csrf_token %}
+                                    
+                                    <div class="form-group mb-4">
+                                        <input type="text" class="form-control" name="email" placeholder="Enter Your Email">
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <input type="text" class="form-control" name="firstname" placeholder="First Name">
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <input type="text" class="form-control" name="address" placeholder="Address">
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <select class="form-control  show-tick" name="gender">
+                                            <option value="">- Gender -</option>
+                                            <option value="Male">Male</option>
+                                            <option value="Female">Female</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <div class="form-group">
+                                            <input type="date" class="form-control" name="dob" placeholder="Date of Birth">
+                                        </div>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <input type="text" class="form-control" name="contact_no" placeholder="Contact Number">
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <input type="password" class="form-control" name="password" placeholder="Password">
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <input type="password" class="form-control" name="cpassword" placeholder="Confirm password" border-color:black>
+                                    </div>
+                                   
+                                    <button class="btn-primary btn-lg btn-block border-0" type="submit">Register</button>
+                                </form>
+                            </div>
+                            <div class="card-footer text-center border-0 pt-0 rounded-0 bg-transparent">
+                                <h6><a href="{% url 'login' %}"> <b style="color: rgb(255, 255, 255);" >Already have an account?</b></a></h6>
+                            </div>
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+    <!-- Common JS -->
+    <script src="{% static 'assets\plugins\common\common.min.js' %}"></script>
+    <!-- Custom script -->
+    <script src="{% static 'assets\js\custom.min.js' %}"></script>
+    <script src="{% static 'assets\js\settings.js' %}"></script>
+    <script src="{% static 'assets\js\quixnav.js' %}"></script>
+</body>
+
+</html>

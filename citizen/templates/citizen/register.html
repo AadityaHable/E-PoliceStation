@@ -1,0 +1,200 @@
+﻿{% load static %}
+<html lang="en">
+    <head>
+        <link href="{% static 'assets/images/gujarat-police-logo.png' %}" rel="icon">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta name="csrf-token" content="iL8hUXsdXy71MbOZjq4fWUv4KGPZnJ7k17P7RClL">
+        <link rel="icon" href="https://thememakker.com/templates/oreo/hospital/laravel/public/favicon.ico" type="image/x-icon"> <!-- Favicon-->
+        <title>Registration - E-Police Station</title>
+        <meta name="description" content="Oero Laravel">
+        <meta name="author" content="Oero Laravel">
+        
+        
+        
+        <link rel="stylesheet" href="{% static 'assets3\plugins\bootstrap\css\bootstrap.min.css' %}">
+        
+        <!-- Custom Css -->
+        <link rel="stylesheet" href="{% static 'assets3\css\main.css' %}">
+        <link rel="stylesheet" href="{% static 'assets3\css\authentication.css' %}">
+        <link rel="stylesheet" href="{% static 'assets3\css\color_skins.css' %}">
+
+        <script>
+
+            function checkfname()
+            {
+                var fname=document.getElementById("fname").value;
+                var alphaExp = /^[a-zA-Z]+$/;
+
+                if (fname.length<3)
+                {
+                    
+                    document.getElementById("fnamerror").innerHTML="firstname must be between 4 characters to 15 characters";
+                    return false;
+                }
+                else if(!fname.match(alphaExp))
+                {
+                    document.getElementById("fnamerror").innerHTML="firstname must contain characters";
+                    return false;
+
+                }
+                else
+                {
+                    document.getElementById("fnamerror").innerHTML="";
+                 
+                    return false;
+                }
+
+            }
+            function checklname()
+            {
+                var lname=document.getElementById("lname").value;
+                var alphaExp = /^[a-zA-Z]+$/;
+
+                if (lname.length<3)
+                {
+                    
+                    document.getElementById("lnamerror").innerHTML="lastname must be between 4 characters to 15 characters";
+                    return false;
+                }
+                else if(!lname.match(alphaExp))
+                {
+                    document.getElementById("lnamerror").innerHTML="lastname must contain characters";
+                    return false;
+
+                }
+                else
+                {
+                    document.getElementById("lnamerror").innerHTML="";
+                 
+                    return false;
+                }
+
+            }
+            function checkemail()
+            {
+                var email=document.getElementById("email").value;
+                var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+                
+                if(!email.match(validRegex))
+                {
+                        document.getElementById("emsg").innerHTML = "invalid email address";
+                        msg();
+                        return false;
+                }
+                else
+                {
+                    document.getElementById("emsg").innerHTML="";
+                 
+                    return false;
+                }
+            }
+            function checkmobile()
+            {
+                var mobile=document.getElementById('contact_no').value;
+                if(isNaN(mobile))
+                {
+                     document.getElementById("econtact").innerHTML=" mobile must contain digit ";
+                    msg();
+                    return false;
+                }
+            }
+            
+        </script>
+        
+    </head>
+    
+    
+        <body class="theme-cyan authentication sidebar-collapse">
+
+        <nav class="navbar navbar-expand-lg fixed-top navbar-transparent">
+            <div class="container">        
+                <div class="navbar-translate n_logo">
+                    <a class="navbar-brand" href="javascript:void(0);" title="" target="_blank">Citizen</a>
+                    <button class="navbar-toggler" type="button">
+                        <span class="navbar-toggler-bar bar1"></span>
+                        <span class="navbar-toggler-bar bar2"></span>
+                        <span class="navbar-toggler-bar bar3"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-white btn-round" href="{% url 'login' %}">LOGIN</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class="page-header">
+            <div class="page-header-image" style="background-image:url({% static 'assets/images/bgimg2.jpg' %})"></div>
+
+                <div class="container">
+        <div class="col-md-12 content-center">
+            <div class="card-plain">
+                <form class="form" action="{% url 'register_member' %}" method="POST">
+                    {% csrf_token %}
+                    <div class="header">
+                        <div class="text-center my-3">
+                            <img class="square" src="{% static 'assets\images\gujarat-police-logo.png' %}" width="80" height="80" alt="">
+                        </div>
+                        <h5>Registration </h5>
+                    </div>
+                    {% if e_msg %}
+                    <div class="alert alert-danger">
+                        {{e_msg}}
+                    </div>
+                    {% endif %}
+                    <div class="content">                                                
+                        <div class="input-group input-lg">
+                            <input type="text" class="form-control" placeholder="Enter Your First Name" name="fname" id="fname" onblur="checkfname()" required>
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-account-circle"></i>
+                            </span>
+                        </div>
+                        <span style="color: red;" id="fnamerror"></span>
+
+                        <div class="input-group input-lg">
+                            <input type="text" class="form-control" placeholder="Enter Your Last Name" name="lname" id="lname" onblur="checklname()" required>
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-account-circle"></i>
+                            </span>
+                        </div>
+                        <span style="color: red;" id="lnamerror"></span>
+                        
+                        <div class="input-group input-lg">
+                            <input type="text" placeholder="Enater Email ID" class="form-control" name="email" id="email" onblur="checkemail()" required>
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-email"></i>
+                            </span>
+                        </div>
+                        <span style="color: red;" id="emsg"></span>
+
+                        <div class="input-group input-lg">
+                            <input type="text" placeholder="Enater Contact Number" class="form-control" name="contact_no" id="contact_no" onblur="checkmobile()" required>
+                            <span class="input-group-addon">
+                                <i class="zmdi zmdi-phone"></i>
+                            </span>
+                        </div>
+                        <span style="color: red;" id="econtact"></span>
+                    </div>
+                    <div class="footer text-center">
+                        <input type="submit" class="btn btn-primary btn-round btn-lg btn-block " style="background-color: red;color: white;" value="REGISTRATION">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+            
+        </div>
+
+        <!-- Scripts -->
+        <script src="{% static 'assets3\bundles\libscripts.bundle.js' %}"></script>    
+        <script src="{% static 'assets3\bundles\vendorscripts.bundle.js' %}"></script>
+                
+    </body>
+</html>

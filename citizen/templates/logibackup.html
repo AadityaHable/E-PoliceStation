@@ -1,0 +1,82 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>E-Police Station</title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'assets\images\favicon.png' %}">
+    <!-- Custom Stylesheet -->
+    <link href="{% static 'assets\css\style.css' %}" rel="stylesheet">
+</head>
+
+<body class="h-100" style="background-image:url({% static 'assets/images/bgimg2.jpg' %})">
+  <div id="preloader">
+       <!-- <div class="preloader-image" style="background-image:url(' {% static 'assets/images/bgimg.jpg' %})"></div> -->
+
+        <div class="loader"></div>
+    </div>
+    <div class="login-bg h-100">
+        <div class="container h-100">
+            <div class="row justify-content-center h-100">
+                <div class="col-md-5">
+                    <div class="form-input-content">
+                        <!-- <div class="card card-login"> -->
+                            <div class="card-header">
+                                <div class="position-relative  text-center w-100">
+                                    <div class="brand-logo">
+                                        <a href="index.html">
+                                            <span class="brand-title"><b style="color: white;" >E-POLICE STATION</b></span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="text-center my-3">
+                                <img class="square" src="{% static 'assets\images\gujarat-police-logo.png' %}" width="80" height="80" alt="">
+                            </div>
+                            <div class="card-body">
+                                <form class="form" action="{% url 'login_evaluate' %}" method="POST">
+                                    {% csrf_token %}
+                                    {% if e_msg %}
+                                        <div class="alert alert-danger" role="alert">{{e_msg}}</div>
+                                    {% endif %}
+                                    <div class="form-group mb-4" >
+                                        <select class="form-control rounded-0 " name="role">
+                                            <option disabled selected>Select role:</option>
+                                            <option value="commissioner">Commissioner</option>
+                                            <option value="inspector">Inspector</option>
+                                            <option value="citizen">Citizen</option>
+                                        </select>   
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <input type="text" class="form-control rounded-0 " name="email" placeholder="Email" required="required" border-color:black>
+                                    </div>
+                                    <div class="form-group mb-4">
+                                        <input type="password" class="form-control rounded-0 " name="password" placeholder="Password" required="required">
+                                    </div>
+                                    <button class="btn btn-primary btn-block border-0" type="submit">Login</button>
+                                </form>
+                                <div class="text-center border-0 pt-0">
+                                    <p><a href="{% url 'forgot_password' %}" style="color: white;" >Forget Password</a></p>
+                                    <h6 ><a href="{% url 'register_page' %}" style="color: white;" >Click me to create account</a></h6>
+                                </div>
+                            </div>
+                        
+                        <!-- </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- #/ container -->
+    <!-- Common JS -->
+    <script src="{% static 'assets\plugins\common\common.min.js' %}"></script>
+    <!-- Custom script -->
+    <script src="{% static 'assets\js\custom.min.js' %}"></script>
+    <script src="{% static 'assets\js\settings.js' %}"></script>
+    <script src="{% static 'assets\js\quixnav.js' %}"></script>
+</body>
+</html>

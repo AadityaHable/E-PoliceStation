@@ -1,0 +1,85 @@
+{% extends 'tutor_header.html'%}
+{% block content%}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tutor-Town</title>
+    <!-- <script type="text/javascript">
+    	if(window.history.replaceState){
+    		window.history.replaceState(null,null,window.location.href);
+    	}
+    </script> -->
+</head>
+<body>
+    <div class="content-body">
+        <!-- row -->
+        <div class="container-fluid">
+        
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title" style="font-size:40px">Report </h4>
+                        </div>
+                        <form method="post" action="{% url 'batch_report_pdf' %}">
+                            {% csrf_token %}
+                            <select name="filter_name">
+                                <option>---Select Filter---</option>
+                                <option value="bname">Btach Name</option>
+                                <option value="bnum">Btach Number</option>
+                                <option value="tname">Tutor Name</option>
+                                <option value="bsubject">Subject</option>
+                            </select>
+                            <input type="text" id="search" name="search">
+                           
+                            <input type="submit" name="action" value="search">
+                            
+                             <input type="submit" name="action" value="export"/>
+
+                        </form>
+                        <form method="post" action="{% url 'batch_report_pdf' %}">
+                            {% csrf_token %}
+                            <a href="{% url 'batch_report_pdf'  %}"> <input type="submit" name="action" value="Export Pdf" style="float: right;margin-right: 148px; width: 100px;">
+                            </a>
+                        </form>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-sm mb-0 table-striped">
+                                    <thead >
+                                        <tr>
+                                            <th class="px-5 py-3" style="font-size: 15px;">Batch Name</th>
+                                            <th class="py-3" style="font-size: 15px;">Batch Number</th>
+                                            <th class="py-3" style="font-size: 15px;">Tutor Name</th>
+                                            <th class="py-3" style="font-size: 15px;">Subject</th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for i in all_batch %}
+                                        <tr>
+                                            <td class="py-3">{{i.bname}}</td>
+                                            <td class="py-3">{{i.bnum}}</td>
+                                            <td class="py-3">{{i.tutor.fname}}</td>
+                                            <td class="py-3">{{i.bsubject}}</td>
+                                            <!-- {% if i.pstatus == "Complete" %}
+                                                <td ><a href="{% url 'my_students_tutor' %}"><input type="submit"  class="btn btn-primary " style=" background-color:  #095206fd; border-radius: 45px 42px; margin-left: 100px;" value="Approve"></a></td>
+                                                <td class="py-3"></td>
+                                            {% else %}
+                                                <td ><input type="submit"  disabled="disabled" class="btn btn-primary " style=" background-color:  #095206fd; border-radius: 45px 42px; margin-left: 100px;" value="Approve"></td>
+                                                <td class="py-3"></td>
+                                            {% endif %} -->
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                    <!--  -->
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
